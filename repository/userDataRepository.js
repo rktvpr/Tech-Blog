@@ -1,6 +1,6 @@
 const  User_data  = require('../models/user-data');
 
-async function getUserData() {
+async function getUsersData() {
     return await User_data.findAll();
 }
 
@@ -28,4 +28,4 @@ async function deleteUserData(id) {
     })
 }
 
-module.exports = { getUserData, getUserData, createUserData, updateUserData, deleteUserData }
+module.exports = { getUsersData, getUserData, createUserData, updateUserData, deleteUserData }
