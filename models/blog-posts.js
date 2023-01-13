@@ -11,10 +11,10 @@ Blog_posts.init(
             autoIncrement: true,
         },
         author: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'username',
+                model: 'user_data',
                 Key: 'id',
             },
         },

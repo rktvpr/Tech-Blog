@@ -17,13 +17,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(controllers);
 
-// handlebars routes
-app.get('/', (req, res) => {
-  res.render('home');
-});
-app.get('/homepage', (req, res) => {
-  res.render('hompage');
-});
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
