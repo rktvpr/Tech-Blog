@@ -10,6 +10,10 @@ Blog_posts.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         author: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -18,8 +22,8 @@ Blog_posts.init(
                 Key: 'id',
             },
         },
-        post_data: {
-            type: DataTypes.STRING,
+        content: {
+            type: DataTypes.TEXT,
             allowNull: false,
         },
     },
