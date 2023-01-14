@@ -20,7 +20,7 @@ User_data.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        pword: {
+        password: {
             type: DataTypes.STRING,
             allowNull: false,
         },
