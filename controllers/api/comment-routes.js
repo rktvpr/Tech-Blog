@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { getComments, getComment, createComment, updateComment, deleteComment } = require("../../repository/commentRepository")
 const withAuth = require("../../utils/auth");
 
+//gets all comments
 router.get('/', async (req, res) => {
     try {
         const commentData = await getComments();
@@ -12,6 +13,7 @@ router.get('/', async (req, res) => {
     }
 })
 
+//gets single comment
 router.get("/:id", async (req, res) => {
     try {
         const commentDataById = await getComment(req.params.id);
@@ -25,6 +27,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+//creates a comment
 router.post('/', withAuth, async (req, res) => {
     try {
         await createComment(req.body);
@@ -34,6 +37,7 @@ router.post('/', withAuth, async (req, res) => {
     }
 })
 
+//updates a comment
 router.put('/:id', async (req, res) => {
     try {
         const existingComment = await getComment(req.params.id);
@@ -49,6 +53,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+//deletes a comment
 router.delete('/:id', async (req, res) => {
     try {
         const delComment = await getComment(req.params.id);
@@ -63,4 +68,5 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+//export to router
 module.exports = router;

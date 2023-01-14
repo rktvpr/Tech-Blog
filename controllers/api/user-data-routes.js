@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { getUsersData, getUserData, createUserData, updateUserData, deleteUserData } = require("../../repository/userDataRepository")
 const withAuth = require("../../utils/auth");
 
+//gets all user data
 router.get('/', async (req, res) => {
   try {
     const UserData = await getUsersData();
@@ -12,6 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+//gets single users data
 router.get('/:id', async (req, res) => {
   try {
     const userDataById = await getUserData(req.params.id);
@@ -26,6 +28,8 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+
+// creates users data
 router.post('/', withAuth, async (req, res) => {
   try {
     await createUserData(req.body);
@@ -36,6 +40,7 @@ router.post('/', withAuth, async (req, res) => {
 
 });
 
+//logs out and destroys current session
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -46,7 +51,9 @@ router.post("/logout", (req, res) => {
   }
 });
 
+// TODO: add login put here
 
+//updates user data
 router.put('/:id', async (req, res) => {
   try {
     const existingUserData = await getUserData(req.params.id);
@@ -62,6 +69,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+//deletes users data
 router.delete('/:id', async (req, res) => {
   try {
     const delUserData = await getUserData(req.params.id);
@@ -77,4 +85,5 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+//exports
 module.exports = router;

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { getBlogPosts, getBlogPost, createBlogPost, updateBlogPost, deleteBlogPost  } = require("../../repository/blogPostsRepository")
 
-
+//gets all Blog posts
 router.get('/', async (req, res) => {
   try {
     const blogPostsData = await getBlogPosts();
@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+//gets single blog post
 router.get('/:id', async (req, res) => {
   try {
     const blogPostById = await getBlogPost(req.params.id);
@@ -26,6 +27,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+//creates a blog post
 router.post('/', async (req, res) => {
   try {
     await createBlogPost(req.body);
@@ -36,7 +38,7 @@ router.post('/', async (req, res) => {
 
 });
 
-
+//updates a blog post
 router.put('/:id', async (req, res) => {
   try {
     const existingBlogPost = await getBlogPost(req.params.id);
@@ -52,6 +54,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+//deletes a blog post
 router.delete('/:id', async (req, res) => {
   try {
     const delBlogPost = await getBlogPost(req.params.id);
