@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { User_data } = require('../../models');
 const { getUsersData, getUserData, createUserData, updateUserData, deleteUserData } = require("../../repository/userDataRepository")
 const withAuth = require("../../utils/auth");
 
@@ -30,14 +31,23 @@ router.get('/:id', async (req, res) => {
 
 
 // creates users data
-router.post('/', withAuth, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    await createUserData(req.body);
-    res.status(201).send();
-  } catch(err) {
+    const dbUserData = await User_data.create({
+      username: req.body.username,
+      password: req.body.password,
+    });
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+
+      res.json(dbUserData);
+    });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
-
 });
 
 //logs out and destroys current session
@@ -52,6 +62,37 @@ router.post("/logout", (req, res) => {
 });
 
 // TODO: add login put here
+
+router.post("/login", async (req, res) => {
+  try {
+    const dbUserData = await User_data.findOne({
+      where: {
+        username: req.body.username,
+      },
+    });
+    if (!dbUserData) {
+      res.status(400).json({ message: "No user with that username!" });
+      return;
+    }
+    const validPassword = dbUserData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: "Incorrect password!" });
+      return;
+    }
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+
+      res.json({ user: dbUserData, message: "You are now logged in!" });
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 
 //updates user data
 router.put('/:id', async (req, res) => {

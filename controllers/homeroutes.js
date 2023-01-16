@@ -6,7 +6,7 @@ const router = require("express").Router()
 router.get('/', async (req, res) => {
     try {
         const blogPostData = await Blog_posts.findAll({
-            attributes: ["id", "title", "content", "created_at"],
+            attributes: ["id", "title", "content"],
             include: [
                 {
                     model: Comment,
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
                         "comment_text",
                         "post_id",
                         "user_id",
-                        "created_at",
+                        // "created_at",
                     ],
                     include: {
                         model: User_data,

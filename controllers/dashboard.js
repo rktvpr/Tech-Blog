@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
             where: {
                 user_id: req.session.user_id,
             },
-            attributes: ["id", "title", "content", "created_at"],
+            attributes: ["id", "title", "content"],
             include: [
                 {
                     model: Comment,
@@ -20,7 +20,6 @@ router.get("/", async (req, res) => {
                         "comment_text",
                         "post_id",
                         "user_id",
-                        "created_at",
                     ],
                     include: {
                         model: User_data,
@@ -50,7 +49,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
             where: {
                 id: req.params.id,
             },
-            attributes: ["id", "title", "content", "created_at"],
+            attributes: ["id", "title", "content"],
             include: [
                 {
                     model: User_data,
@@ -63,7 +62,6 @@ router.get("/edit/:id", withAuth, async (req, res) => {
                         "comment_text",
                         "post_id",
                         "user_id",
-                        "created_at",
                     ],
                     include: {
                         model: User_data,
