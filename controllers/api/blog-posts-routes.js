@@ -29,10 +29,12 @@ router.get('/:id', async (req, res) => {
 
 //creates a blog post
 router.post('/', async (req, res) => {
+  console.log(req.body)
   try {
-    await createBlogPost(req.body);
+    await createBlogPost(req);
     res.status(201).send();
   } catch(err) {
+    console.log(err)
     res.status(500).json(err);
   }
 

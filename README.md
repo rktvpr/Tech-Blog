@@ -1,5 +1,9 @@
 # Tech-Blog
 
+## Description
+This is a Tech Blog webpage that has multiple functionalities to it including,
+a login/logout feature, a dashboard to view posts from others, the ability to post new blog posts, as well as comment and reaction functionality.
+
 ## Acceptance Criteria
 
 ```md

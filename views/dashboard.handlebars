@@ -2,12 +2,23 @@
 <section>
   <h3 class="text-white m-4">Your Posts</h3>
     {{#each posts as |post|}}
-      {{> dashboard-postinfo post}}
+   <div class=" card
+          align
+          mx-4
+          mt-4
+          bg-dark
+          text-white
+          customCard">
+    <div class="card-header">
+        <h4><a class="text-decoration-none" href="/dashboard/edit/{{post.id}}">{{post.title}}</a></h4>
+    </div>
+</div>
+      {{!-- {{> dashboard-postinfo post}} --}}
     {{/each}}
 
 </section>
 {{/if}}
 
 <div class="d-grid gap-2 col-4 mx-auto">
-    <button type="submit" class="btn btn-primary m-4"><a class="text-decoration-none fs-5" href="/dashboard/new">Add New Post</a></button>
+    <button type="submit" class="btn btn-dark m-4"><a class="text-decoration-none fs-5" href="/dashboard/new">Add New Post</a></button>
 </div>

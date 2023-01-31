@@ -28,10 +28,11 @@ async function getBlogPosts() {
       });
 }
 
-async function getBlogPost() {
+async function getBlogPost(req) {
+  console.log('post_data',post_data);
     return await Blog_posts.findOne({
         where: {
-          id: req.params.id,
+          id: req.session.id,
         },
         attributes: ["id", "content", "title", "created_at"],
         include: [
@@ -57,11 +58,13 @@ async function getBlogPost() {
       });
 }
 
-async function createBlogPost() {
+async function createBlogPost(req) {
+  console.log('req.body',req.body);
+  console.log('req.session', req.session)
     await Blog_posts.create({
         title: req.body.title,
         content: req.body.content,
-        author: req.session.author,
+        author: req.session.user_id,
       });
 }
 
@@ -70,6 +73,7 @@ async function updateBlogPost(post_data, id) {
     await Blog_posts.update({
         title: req.body.title,
         content: req.body.content,
+        author: req.session.user_id,
     }, {
         where: req.params.id
     });

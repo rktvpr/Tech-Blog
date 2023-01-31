@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     try {
         const blogPostData = await Blog_posts.findAll({
             where: {
-                user_id: req.session.user_id,
+                id: req.session.user_id,
             },
             attributes: ["id", "title", "content"],
             include: [
@@ -33,8 +33,11 @@ router.get("/", async (req, res) => {
             ],
         });
 
-        const posts = blogPostData.map(post => post.get({ plain: true }));
 
+       // const blogPostData = await Blog_posts.findAll();
+
+        const posts = blogPostData.map(post => post.get({ plain: true }));
+        console.log('posts tutoring',posts)
         res.render("dashboard", { posts, loggedIn: true });
     } catch (err) {
         console.log(err);
