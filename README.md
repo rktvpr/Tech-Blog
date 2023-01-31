@@ -56,3 +56,24 @@ THEN I am signed out of the site
 WHEN I am idle on the site for more than a set time
 THEN I am able to view comments but I am prompted to log in again before I can add, update, or delete comments
 ```
+
+## Usage
+To use this program, login or create a new login. Then you will have access to the dashboard where you can see posts, create new posts, update posts, and delete posts.
+
+## Tech Used
+* [Node.js](https://nodejs.org/en/)
+* [Express.js](https://expressjs.com/)
+* [Handlebars.js](https://handlebarsjs.com/)
+* [MySQL](https://www.mysql.com/)
+* [Sequelize](https://www.npmjs.com/package/sequelize)
+* [express-session](https://www.npmjs.com/package/express-session)
+* [dotenv](https://www.npmjs.com/package/dotenv)
+* [Bootstrap](https://getbootstrap.com)
+* [Heroku](https://www.heroku.com/)
+
+## Credits
+-Rick Welte
+-UPENN instructors and tutors
+
+## License
+[MIT License](https://github.com/rktvpr/Gritty-Wear/blob/main/LICENSE)
