@@ -8,7 +8,7 @@ also creating databases models and routes, linking them to the front end using h
 
 ## Usage
 To use this program, login or create a new login. Then you will have access to the dashboard where you can see posts, create new posts, update posts, and delete posts.
-[alt-text](/assets/Tech-blog.png)
+(/assets/Tech-blog.png)
 
 
 ## Tech Used
